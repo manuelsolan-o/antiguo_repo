@@ -1,0 +1,69 @@
+---
+Author: Juan Manuel Hernández Solano
+output: html_notebook
+---
+
+```{r Lectura de variables}
+zika<-read.fasta("C:/Users/Usuario/Desktop/Sequences/Viruses/zika.fasta")
+sars1<-read.fasta("C:/Users/Usuario/Desktop/Sequences/Viruses/sars1.fasta")
+sars2<-read.fasta("C:/Users/Usuario/Desktop/Sequences/Viruses/sars2.fasta")
+east_sars<-read.fasta("C:/Users/Usuario/Desktop/Sequences/Viruses/east_sars.fasta")
+dengue1<-read.fasta("C:/Users/Usuario/Desktop/Sequences/Viruses/dengue.fasta")
+
+```
+
+```{r Tamaño_genomas}
+"El tamaño de los genomas de: zika, sars1, sars2, east_sars y dengue1 son: "
+length(zika[[1]])
+length(sars1[[1]])
+length(sars2[[1]])
+length(east_sars[[1]])
+length(dengue1[[1]])
+
+```
+
+```{r Composicion_Genomas}
+table(zika[[1]])
+table(sars1[[1]])
+table(sars2[[1]])
+table(east_sars[[1]])
+table(dengue1[[1]])
+```
+
+```{r Conteo_CG}
+"Los porcentajes de CG de cada genomas son: "
+GC(zika[[1]])*100
+GC(sars1[[1]])*100
+GC(sars2[[1]])*100
+GC(east_sars[[1]])*100
+GC(dengue1[[1]])*100
+```
+
+```{r Secuencia_Complementaria}
+"Los ssRNA-(-) de cada genoma son: "
+"zika"
+comp(zika[[1]])
+"sars 1"
+comp(sars1[[1]])
+"sars 2"
+comp(sars2[[1]])
+"east_sars"
+comp(east_sars[[1]])
+"dengue1"
+comp(dengue1[[1]])
+```
+
+```{r Comparacion_de_composicion}
+compare<-function(zika, sars1, sars2, east_sars, dengue1){
+  par(mfrow=c(1,5))
+  barplot(table(zika), col=1:4, main = "zika")
+  barplot(table(sars1), col=1:4, main = "sars1")
+  barplot(table(sars2), col=1:4, main = "sars2")
+  barplot(table(east_sars), col=1:4, main = "east_sars")
+  barplot(table(dengue1), col=1:4, main = "dengue1")
+}
+
+compare(zika, sars1, sars2, east_sars, dengue1)
+
+```
+
